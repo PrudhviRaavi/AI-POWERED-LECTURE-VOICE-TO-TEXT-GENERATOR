@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Mic, Plus, LogOut, Loader2 } from 'lucide-react';
 import { useAuth } from './hooks/useAuth';
-import { supabase } from './lib/supabase';
+import { supabase, isSupabaseConfigured } from './lib/supabase';
 import type { Lecture, Note } from './lib/supabase';
 import { AuthForm } from './components/AuthForm';
 import { LectureList } from './components/LectureList';
@@ -21,13 +21,13 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (user) {
+    if (user && supabase) {
       loadLectures();
     }
   }, [user]);
 
   const loadLectures = async () => {
-    if (!user) return;
+    if (!user || !supabase) return;
 
     const { data, error } = await supabase
       .from('lectures')
@@ -70,7 +70,7 @@ function App() {
   };
 
   const handleSaveRecording = async (transcript: string, duration: number) => {
-    if (!user || !currentLectureData) return;
+    if (!user || !currentLectureData || !supabase) return;
 
     setShowRecording(false);
     setLoading(true);
@@ -127,7 +127,7 @@ function App() {
   };
 
   const handleDeleteLecture = async (id: string) => {
-    if (!user) return;
+    if (!user || !supabase) return;
 
     const { error } = await supabase.from('lectures').delete().eq('id', id);
 
@@ -145,7 +145,7 @@ function App() {
   };
 
   const handleUpdateNote = async (content: string) => {
-    if (!selectedLecture) return;
+    if (!selectedLecture || !supabase) return;
 
     const note = notes[selectedLecture.id];
     if (!note) return;
@@ -171,6 +171,25 @@ function App() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+      </div>
+    );
+  }
+
+  if (!isSupabaseConfigured) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
+        <div className="max-w-xl w-full bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Setup Required</h1>
+          <p className="text-gray-700 mb-4">
+            Supabase environment variables are missing, so the app cannot load data yet.
+          </p>
+          <p className="text-sm text-gray-600 mb-2">Create a file named <code>.env.local</code> in the project folder and add:</p>
+          <pre className="bg-gray-900 text-gray-100 text-sm rounded-lg p-4 overflow-x-auto whitespace-pre-wrap break-words">
+{`VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key`}
+          </pre>
+          <p className="text-sm text-gray-600 mt-4">After saving, restart the dev/preview server.</p>
+        </div>
       </div>
     );
   }
