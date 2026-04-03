@@ -44,11 +44,11 @@ export function RecordingInterface({ onSave, onCancel }: RecordingInterfaceProps
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white">
+    <div className="fixed inset-0 bg-slate-900/45 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+      <div className="soft-panel rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-hidden fade-up">
+        <div className="bg-gradient-to-r from-blue-800 to-cyan-700 p-6 text-white">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-2xl font-bold">Record Lecture</h2>
+            <h2 className="font-editorial text-4xl">Record Lecture</h2>
             <button
               onClick={onCancel}
               className="p-2 hover:bg-white/20 rounded-lg transition-colors"
@@ -59,7 +59,7 @@ export function RecordingInterface({ onSave, onCancel }: RecordingInterfaceProps
 
           <div className="flex items-center justify-center gap-8">
             <div className="text-center">
-              <div className="text-5xl font-bold font-mono">{formatDuration(duration)}</div>
+              <div className="text-5xl font-extrabold tracking-tight">{formatDuration(duration)}</div>
               <div className="text-blue-100 text-sm mt-1">
                 {isRecording && !isPaused && (
                   <span className="inline-flex items-center gap-2">
@@ -90,14 +90,14 @@ export function RecordingInterface({ onSave, onCancel }: RecordingInterfaceProps
               <>
                 <button
                   onClick={handlePause}
-                  className="w-16 h-16 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center"
+                  className="w-16 h-16 bg-amber-500 hover:bg-amber-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center"
                 >
                   {isPaused ? <Play className="w-6 h-6" /> : <Pause className="w-6 h-6" />}
                 </button>
 
                 <button
                   onClick={handleStop}
-                  className="w-20 h-20 bg-gray-700 hover:bg-gray-800 text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center"
+                  className="w-20 h-20 bg-slate-700 hover:bg-slate-800 text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center"
                 >
                   <Square className="w-8 h-8" />
                 </button>
@@ -107,7 +107,7 @@ export function RecordingInterface({ onSave, onCancel }: RecordingInterfaceProps
             {isStopped && (
               <button
                 onClick={handleSave}
-                className="w-20 h-20 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center"
+                className="w-20 h-20 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center"
                 disabled={!transcript}
               >
                 <Save className="w-8 h-8" />
@@ -115,12 +115,12 @@ export function RecordingInterface({ onSave, onCancel }: RecordingInterfaceProps
             )}
           </div>
 
-          <div className="bg-gray-50 rounded-xl p-4 max-h-60 overflow-y-auto">
-            <h3 className="font-semibold text-gray-700 mb-2 flex items-center gap-2">
+          <div className="bg-slate-50 rounded-xl p-4 max-h-60 overflow-y-auto border border-slate-200">
+            <h3 className="font-semibold text-slate-700 mb-2 flex items-center gap-2">
               <Mic className="w-4 h-4" />
               Live Transcription
             </h3>
-            <div className="text-gray-600 text-sm leading-relaxed">
+            <div className="text-slate-600 text-sm leading-relaxed">
               {transcript || 'Start speaking to see transcription...'}
             </div>
           </div>

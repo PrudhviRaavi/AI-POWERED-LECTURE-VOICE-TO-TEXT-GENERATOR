@@ -30,12 +30,12 @@ export function NoteEditor({ lecture, note, onUpdateNote }: NoteEditorProps) {
   };
 
   return (
-    <div className="h-full flex flex-col bg-white">
-      <div className="border-b border-gray-200 p-6">
+    <div className="h-full flex flex-col bg-white/70">
+      <div className="border-b border-slate-200 p-6 bg-white/75">
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">{lecture.title}</h1>
-            <div className="flex items-center gap-4 text-sm text-gray-600">
+            <h1 className="font-editorial text-3xl text-slate-900 mb-2">{lecture.title}</h1>
+            <div className="flex items-center gap-4 text-sm text-slate-600">
               {lecture.subject && (
                 <div className="flex items-center gap-1">
                   <BookOpen className="w-4 h-4" />
@@ -50,7 +50,7 @@ export function NoteEditor({ lecture, note, onUpdateNote }: NoteEditorProps) {
             {hasChanges && (
               <button
                 onClick={handleSave}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center gap-2 transition-colors"
+                className="px-4 py-2 bg-gradient-to-r from-blue-700 to-cyan-600 hover:from-blue-800 hover:to-cyan-700 text-white rounded-xl flex items-center gap-2 transition-colors"
               >
                 <Save className="w-4 h-4" />
                 Save
@@ -58,29 +58,29 @@ export function NoteEditor({ lecture, note, onUpdateNote }: NoteEditorProps) {
             )}
 
             <div className="relative group">
-              <button className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg flex items-center gap-2 transition-colors">
+              <button className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl flex items-center gap-2 transition-colors">
                 <Download className="w-4 h-4" />
                 Export
               </button>
 
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10">
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10">
                 <button
                   onClick={() => exportAsText(lecture, note)}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center gap-2 text-sm"
+                  className="w-full px-4 py-2 text-left hover:bg-slate-50 flex items-center gap-2 text-sm"
                 >
                   <FileText className="w-4 h-4" />
                   Export as TXT
                 </button>
                 <button
                   onClick={() => exportAsMarkdown(lecture, note)}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center gap-2 text-sm"
+                  className="w-full px-4 py-2 text-left hover:bg-slate-50 flex items-center gap-2 text-sm"
                 >
                   <FileDown className="w-4 h-4" />
                   Export as Markdown
                 </button>
                 <button
                   onClick={() => exportAsPDF(lecture, note)}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center gap-2 text-sm"
+                  className="w-full px-4 py-2 text-left hover:bg-slate-50 flex items-center gap-2 text-sm"
                 >
                   <Printer className="w-4 h-4" />
                   Print / PDF
@@ -92,11 +92,11 @@ export function NoteEditor({ lecture, note, onUpdateNote }: NoteEditorProps) {
 
         {note.tags.length > 0 && (
           <div className="flex items-center gap-2 flex-wrap">
-            <Tag className="w-4 h-4 text-gray-400" />
+            <Tag className="w-4 h-4 text-slate-400" />
             {note.tags.map((tag, index) => (
               <span
                 key={index}
-                className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"
+                className="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm font-medium"
               >
                 {tag}
               </span>
@@ -105,14 +105,14 @@ export function NoteEditor({ lecture, note, onUpdateNote }: NoteEditorProps) {
         )}
       </div>
 
-      <div className="border-b border-gray-200">
+      <div className="border-b border-slate-200 bg-white/65">
         <div className="flex">
           <button
             onClick={() => setActiveTab('notes')}
             className={`px-6 py-3 font-medium text-sm border-b-2 transition-colors ${
               activeTab === 'notes'
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-gray-600 hover:text-gray-900'
+                ? 'border-blue-600 text-blue-700'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
             }`}
           >
             <div className="flex items-center gap-2">
@@ -124,8 +124,8 @@ export function NoteEditor({ lecture, note, onUpdateNote }: NoteEditorProps) {
             onClick={() => setActiveTab('transcription')}
             className={`px-6 py-3 font-medium text-sm border-b-2 transition-colors ${
               activeTab === 'transcription'
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-gray-600 hover:text-gray-900'
+                ? 'border-blue-600 text-blue-700'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
             }`}
           >
             <div className="flex items-center gap-2">
@@ -137,8 +137,8 @@ export function NoteEditor({ lecture, note, onUpdateNote }: NoteEditorProps) {
             onClick={() => setActiveTab('summary')}
             className={`px-6 py-3 font-medium text-sm border-b-2 transition-colors ${
               activeTab === 'summary'
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-gray-600 hover:text-gray-900'
+                ? 'border-blue-600 text-blue-700'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
             }`}
           >
             <div className="flex items-center gap-2">
@@ -150,8 +150,8 @@ export function NoteEditor({ lecture, note, onUpdateNote }: NoteEditorProps) {
             onClick={() => setActiveTab('keypoints')}
             className={`px-6 py-3 font-medium text-sm border-b-2 transition-colors ${
               activeTab === 'keypoints'
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-gray-600 hover:text-gray-900'
+                ? 'border-blue-600 text-blue-700'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
             }`}
           >
             <div className="flex items-center gap-2">
@@ -169,15 +169,15 @@ export function NoteEditor({ lecture, note, onUpdateNote }: NoteEditorProps) {
               value={content}
               onChange={(e) => handleContentChange(e.target.value)}
               placeholder="Take your notes here... You can expand on the AI-generated summary and key points."
-              className="w-full h-full min-h-[500px] p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none font-mono text-sm leading-relaxed"
+              className="w-full h-full min-h-[500px] p-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none font-mono text-sm leading-relaxed bg-white"
             />
           </div>
         )}
 
         {activeTab === 'transcription' && (
           <div className="prose max-w-none">
-            <div className="bg-gray-50 rounded-lg p-6">
-              <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+            <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
+              <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">
                 {note.transcription || 'No transcription available.'}
               </p>
             </div>
@@ -186,8 +186,8 @@ export function NoteEditor({ lecture, note, onUpdateNote }: NoteEditorProps) {
 
         {activeTab === 'summary' && (
           <div className="prose max-w-none">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-              <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+            <div className="bg-cyan-50 border border-cyan-200 rounded-xl p-6">
+              <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">
                 {note.ai_summary || 'No summary available.'}
               </p>
             </div>
@@ -198,15 +198,15 @@ export function NoteEditor({ lecture, note, onUpdateNote }: NoteEditorProps) {
           <div className="space-y-4">
             {note.key_points.length > 0 ? (
               note.key_points.map((point, index) => (
-                <div key={index} className="flex gap-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
-                  <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                <div key={index} className="flex gap-4 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-4 border border-cyan-200">
+                  <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-blue-700 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold">
                     {index + 1}
                   </div>
-                  <p className="flex-1 text-gray-700 leading-relaxed">{point}</p>
+                  <p className="flex-1 text-slate-700 leading-relaxed">{point}</p>
                 </div>
               ))
             ) : (
-              <div className="text-center py-12 text-gray-500">
+              <div className="text-center py-12 text-slate-500">
                 No key points extracted.
               </div>
             )}

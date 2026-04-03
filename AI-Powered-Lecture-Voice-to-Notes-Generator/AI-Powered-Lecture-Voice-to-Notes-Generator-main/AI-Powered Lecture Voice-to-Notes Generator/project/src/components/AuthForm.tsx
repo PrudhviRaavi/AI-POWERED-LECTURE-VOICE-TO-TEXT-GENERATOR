@@ -34,31 +34,47 @@ export function AuthForm({ onSignIn, onSignUp }: AuthFormProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-4">
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-            </svg>
-          </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Voice-to-Notes Generator
+    <div className="min-h-screen flex items-center justify-center p-4 md:p-10">
+      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-6 fade-up">
+        <section className="soft-panel rounded-3xl p-8 md:p-10 text-slate-900">
+          <p className="uppercase tracking-[0.2em] text-xs text-slate-500 mb-3">Intelligent Workspace</p>
+          <h1 className="font-editorial text-4xl md:text-5xl leading-tight mb-4">
+            Turn lecture chaos into structured insight.
           </h1>
-          <p className="text-gray-600">
-            AI-powered lecture note-taking made simple
+          <p className="text-slate-600 max-w-lg mb-8">
+            Record, transcribe, summarize, and organize with a focused interface designed for serious coursework.
           </p>
-        </div>
 
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          <div className="flex rounded-lg bg-gray-100 p-1 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+            <div className="rounded-2xl bg-white/70 border border-slate-200 p-4">
+              <p className="text-slate-500">Speed</p>
+              <p className="text-xl font-bold text-slate-900">3x Faster</p>
+            </div>
+            <div className="rounded-2xl bg-white/70 border border-slate-200 p-4">
+              <p className="text-slate-500">Clarity</p>
+              <p className="text-xl font-bold text-slate-900">AI Summary</p>
+            </div>
+            <div className="rounded-2xl bg-white/70 border border-slate-200 p-4">
+              <p className="text-slate-500">Format</p>
+              <p className="text-xl font-bold text-slate-900">Export Ready</p>
+            </div>
+          </div>
+        </section>
+
+        <div className="soft-panel rounded-3xl p-8 md:p-10">
+          <div className="mb-6">
+            <p className="text-sm uppercase tracking-widest text-slate-500 mb-2">Welcome</p>
+            <h2 className="text-3xl font-bold text-slate-900">{isSignUp ? 'Create Account' : 'Sign In'}</h2>
+          </div>
+
+          <div className="flex rounded-xl bg-slate-100 p-1 mb-6">
             <button
               type="button"
               onClick={() => setIsSignUp(false)}
-              className={`flex-1 rounded-md py-2 text-sm font-medium transition-all ${
+              className={`flex-1 rounded-lg py-2.5 text-sm font-semibold transition-all ${
                 !isSignUp
-                  ? 'bg-white text-gray-900 shadow'
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? 'bg-white text-slate-900 shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               Sign In
@@ -66,10 +82,10 @@ export function AuthForm({ onSignIn, onSignUp }: AuthFormProps) {
             <button
               type="button"
               onClick={() => setIsSignUp(true)}
-              className={`flex-1 rounded-md py-2 text-sm font-medium transition-all ${
+              className={`flex-1 rounded-lg py-2.5 text-sm font-semibold transition-all ${
                 isSignUp
-                  ? 'bg-white text-gray-900 shadow'
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? 'bg-white text-slate-900 shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               Sign Up
@@ -78,7 +94,7 @@ export function AuthForm({ onSignIn, onSignUp }: AuthFormProps) {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-1">
                 Email
               </label>
               <input
@@ -87,13 +103,13 @@ export function AuthForm({ onSignIn, onSignUp }: AuthFormProps) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white/80"
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="block text-sm font-semibold text-slate-700 mb-1">
                 Password
               </label>
               <input
@@ -103,13 +119,13 @@ export function AuthForm({ onSignIn, onSignUp }: AuthFormProps) {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={6}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white/80"
                 placeholder="••••••••"
               />
             </div>
 
             {error && (
-              <div className="bg-red-50 text-red-700 px-4 py-3 rounded-lg text-sm">
+              <div className="bg-red-50 text-red-700 px-4 py-3 rounded-xl text-sm border border-red-200">
                 {error}
               </div>
             )}
@@ -117,7 +133,7 @@ export function AuthForm({ onSignIn, onSignUp }: AuthFormProps) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-blue-700 to-cyan-600 hover:from-blue-800 hover:to-cyan-700 text-white font-semibold py-3 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -133,13 +149,13 @@ export function AuthForm({ onSignIn, onSignUp }: AuthFormProps) {
             </button>
           </form>
 
-          <div className="mt-6 text-center text-sm text-gray-600">
+          <div className="mt-6 text-center text-sm text-slate-600">
             {isSignUp ? (
               <p>
                 Already have an account?{' '}
                 <button
                   onClick={() => setIsSignUp(false)}
-                  className="text-blue-600 hover:text-blue-700 font-medium"
+                  className="text-blue-700 hover:text-blue-800 font-semibold"
                 >
                   Sign in
                 </button>
@@ -149,17 +165,17 @@ export function AuthForm({ onSignIn, onSignUp }: AuthFormProps) {
                 Don't have an account?{' '}
                 <button
                   onClick={() => setIsSignUp(true)}
-                  className="text-blue-600 hover:text-blue-700 font-medium"
+                  className="text-blue-700 hover:text-blue-800 font-semibold"
                 >
                   Sign up
                 </button>
               </p>
             )}
           </div>
-        </div>
 
-        <div className="mt-6 text-center text-xs text-gray-500">
-          <p>Secure authentication powered by Supabase</p>
+          <div className="mt-6 text-center text-xs text-slate-500">
+            <p>Secure authentication powered by Supabase</p>
+          </div>
         </div>
       </div>
     </div>

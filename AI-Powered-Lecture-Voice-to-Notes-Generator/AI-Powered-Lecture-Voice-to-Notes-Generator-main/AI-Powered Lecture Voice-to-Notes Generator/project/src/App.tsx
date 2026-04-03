@@ -177,18 +177,19 @@ function App() {
 
   if (!isSupabaseConfigured) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
-        <div className="max-w-xl w-full bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Setup Required</h1>
-          <p className="text-gray-700 mb-4">
+      <div className="min-h-screen flex items-center justify-center p-6">
+        <div className="max-w-2xl w-full soft-panel rounded-3xl p-7 md:p-10 fade-up">
+          <p className="text-xs tracking-[0.22em] uppercase text-slate-500 mb-2">Configuration</p>
+          <h1 className="font-editorial text-4xl text-slate-900 mb-3">Setup Required</h1>
+          <p className="text-slate-700 mb-5">
             Supabase environment variables are missing, so the app cannot load data yet.
           </p>
-          <p className="text-sm text-gray-600 mb-2">Create a file named <code>.env.local</code> in the project folder and add:</p>
-          <pre className="bg-gray-900 text-gray-100 text-sm rounded-lg p-4 overflow-x-auto whitespace-pre-wrap break-words">
+          <p className="text-sm text-slate-600 mb-2">Create a file named <code>.env.local</code> in the project folder and add:</p>
+          <pre className="bg-slate-900 text-slate-100 text-sm rounded-xl p-4 overflow-x-auto whitespace-pre-wrap break-words">
 {`VITE_SUPABASE_URL=your_supabase_project_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key`}
           </pre>
-          <p className="text-sm text-gray-600 mt-4">After saving, restart the dev/preview server.</p>
+          <p className="text-sm text-slate-600 mt-4">After saving, restart the dev/preview server.</p>
         </div>
       </div>
     );
@@ -199,23 +200,23 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key`}
   }
 
   return (
-    <div className="h-screen flex flex-col bg-gray-50">
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="flex items-center justify-between">
+    <div className="min-h-screen flex flex-col px-3 py-3 md:px-6 md:py-5 gap-3 fade-up">
+      <header className="soft-panel rounded-2xl px-4 md:px-6 py-4">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
+            <div className="w-11 h-11 bg-gradient-to-br from-blue-700 to-cyan-600 rounded-xl flex items-center justify-center shadow-md">
               <Mic className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">Voice-to-Notes</h1>
-              <p className="text-sm text-gray-600">AI-Powered Smart Notetaker</p>
+              <h1 className="text-xl font-extrabold text-slate-900 tracking-tight">Voice-to-Notes</h1>
+              <p className="text-sm text-slate-600">AI-Powered Smart Notetaker</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <button
               onClick={() => setShowNewLectureModal(true)}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center gap-2 transition-colors shadow-sm"
+              className="px-4 py-2 bg-gradient-to-r from-blue-700 to-cyan-600 hover:from-blue-800 hover:to-cyan-700 text-white rounded-xl flex items-center gap-2 transition-colors shadow-sm"
             >
               <Plus className="w-5 h-5" />
               New Lecture
@@ -223,7 +224,7 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key`}
 
             <button
               onClick={signOut}
-              className="px-4 py-2 border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-lg flex items-center gap-2 transition-colors"
+              className="px-4 py-2 border border-slate-300 hover:bg-slate-50 text-slate-700 rounded-xl flex items-center gap-2 transition-colors"
             >
               <LogOut className="w-5 h-5" />
               Sign Out
@@ -232,8 +233,8 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key`}
         </div>
       </header>
 
-      <div className="flex-1 flex overflow-hidden">
-        <aside className="w-96 border-r border-gray-200 overflow-hidden">
+      <div className="flex-1 flex overflow-hidden soft-panel rounded-2xl">
+        <aside className="w-full md:w-96 border-b md:border-b-0 md:border-r border-slate-200 overflow-hidden">
           <LectureList
             lectures={lectures}
             onSelectLecture={setSelectedLecture}
@@ -242,13 +243,13 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key`}
           />
         </aside>
 
-        <main className="flex-1 overflow-hidden">
+        <main className="flex-1 overflow-hidden bg-white/40">
           {loading ? (
             <div className="h-full flex items-center justify-center">
               <div className="text-center">
                 <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto mb-4" />
-                <p className="text-gray-600 font-medium">Processing your lecture...</p>
-                <p className="text-gray-500 text-sm mt-2">Generating AI summary and key points</p>
+                <p className="text-slate-700 font-semibold">Processing your lecture...</p>
+                <p className="text-slate-500 text-sm mt-2">Generating AI summary and key points</p>
               </div>
             </div>
           ) : selectedLecture && notes[selectedLecture.id] ? (
@@ -259,20 +260,20 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key`}
             />
           ) : (
             <div className="h-full flex items-center justify-center p-8">
-              <div className="text-center max-w-md">
-                <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Mic className="w-12 h-12 text-gray-400" />
+              <div className="text-center max-w-md soft-panel rounded-3xl p-8">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Mic className="w-12 h-12 text-blue-700" />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-3">
+                <h2 className="font-editorial text-4xl text-slate-900 mb-3 leading-tight">
                   Welcome to Voice-to-Notes
                 </h2>
-                <p className="text-gray-600 mb-6">
+                <p className="text-slate-600 mb-6">
                   Record your lectures and get instant AI-powered transcriptions, summaries, and key points.
                   Click "New Lecture" to get started!
                 </p>
                 <button
                   onClick={() => setShowNewLectureModal(true)}
-                  className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center gap-2 transition-colors mx-auto shadow-lg"
+                  className="px-6 py-3 bg-gradient-to-r from-blue-700 to-cyan-600 hover:from-blue-800 hover:to-cyan-700 text-white rounded-xl flex items-center gap-2 transition-colors mx-auto shadow-lg"
                 >
                   <Plus className="w-5 h-5" />
                   Create Your First Lecture
